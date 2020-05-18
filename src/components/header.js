@@ -1,14 +1,10 @@
 import PropTypes from "prop-types"
 import React from "react"
+import HeaderImage from "../components/headerImage"
 
 const Header = ({ siteTitle }) => (
   <header className="header">
-    <div className="header-background">
-      <h1 id="main-title">
-        Hello, I'm a designer &amp; developer <br />
-        working in Cornwall.
-      </h1>
-    </div>
+    <HeaderImage />
   </header>
 )
 
