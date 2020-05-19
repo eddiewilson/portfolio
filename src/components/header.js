@@ -4,7 +4,7 @@ import HeaderImage from "../components/headerImage"
 
 const Header = ({ siteTitle }) => (
   <header className="header">
-    <HeaderImage />
+    <HeaderImage className="header-background" />
   </header>
 )
 
