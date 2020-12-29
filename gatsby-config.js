@@ -78,10 +78,25 @@ module.exports = {
               {
                 family: `Archivo`,
                 variants: [`100`, `300`, `400`, `700`, `700i`, `900`],
-              }
+              },
             ],
           },
         },
+      },
+    },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `tomato`,
+        // Disable the loading spinner.
+        showSpinner: true,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-styled-components`,
+      options: {
+        // Add any options here
       },
     },
   ],
