@@ -6,6 +6,9 @@
  */
 
 import React from "react"
+import { ThemeProvider, CssBaseline } from "@material-ui/core/"
+import { ThemeProvider as StyledThemeProvider } from "styled-components"
+import theme from "../gatsby-theme-material-ui-top-layout/theme"
 import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 
@@ -25,11 +28,15 @@ const Layout = ({ children }) => {
   `)
 
   return (
-    <>
-      <Header siteTitle={data.site.siteMetadata.title} />
-      {/* <main>{children}</main> */}
-      <Footer />
-    </>
+    <ThemeProvider theme={theme}>
+      <StyledThemeProvider theme={theme}>
+        <CssBaseline />
+
+        <Header siteTitle={data.site.siteMetadata.title} />
+        <main>{children}</main>
+        <Footer />
+      </StyledThemeProvider>
+    </ThemeProvider>
   )
 }
 

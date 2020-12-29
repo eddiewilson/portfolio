@@ -27,6 +27,12 @@ module.exports = {
         icon: `src/images/favicon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-typography`,
+      options: {
+        pathToConfigModule: `src/utils/typography`,
+      },
+    },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
@@ -57,6 +63,25 @@ module.exports = {
         // sampleRate: 5,
         // siteSpeedSampleRate: 10,
         // cookieDomain: "example.com",
+      },
+    },
+    {
+      resolve: `gatsby-theme-material-ui`,
+      options: {
+        webFontsConfig: {
+          fonts: {
+            google: [
+              {
+                family: `Archivo Black`,
+                variants: [`400`, `400i`, `700`, `900`],
+              },
+              {
+                family: `Archivo`,
+                variants: [`100`, `300`, `400`, `700`, `700i`, `900`],
+              }
+            ],
+          },
+        },
       },
     },
   ],

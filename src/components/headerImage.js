@@ -1,10 +1,39 @@
 import React from "react"
 import { graphql, StaticQuery } from "gatsby"
+import { Typography, withTheme } from "@material-ui/core/"
 import styled from "styled-components"
-
+import { rhythm } from "../utils/typography"
 import BackgroundImage from "gatsby-background-image"
 
-const BackgroundSection = ({ className }) => (
+const Heading = withTheme(styled(Typography)`
+  position: absolute;
+  left: 11vw;
+  bottom: ${rhythm(4)};
+  color: white;
+  z-index: 1;
+  ${props => props.theme.breakpoints.up("sm")} {
+    max-width: 75vw;
+    bottom: ${rhythm(4)};
+  }
+`)
+
+const Overlay = styled.div`
+  position: absolute;
+  background-color: rgba(44, 54, 66, 0.7);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+`
+
+const HeroImage = styled(BackgroundImage)`
+  background-position: 45vw 10vh !important;
+  ${props => props.theme.breakpoints.up("sm")} {
+    border: ${rhythm(1)} solid white;
+  }
+`
+
+const BackgroundSection = ({ className, props }) => (
   <StaticQuery
     query={graphql`
       query {
@@ -24,17 +53,17 @@ const BackgroundSection = ({ className }) => (
       const imageData = data.desktop.childImageSharp.fluid
       return (
         <StyledBackgroundSection>
-          <BackgroundImage
+          <HeroImage
             Tag="section"
             className={className}
             fluid={imageData}
             backgroundColor={`#ededed`}
           >
-            <h1 id="main-title">
-              Hello, I'm a designer &amp; developer <br />
-              working in Cornwall.
-            </h1>
-          </BackgroundImage>
+            <Overlay />
+            <Heading variant="h1" component="h2">
+              I’m Ed — <br />a developer / designer based in Cornwall
+            </Heading>
+          </HeroImage>
         </StyledBackgroundSection>
       )
     }}
@@ -57,9 +86,9 @@ const StyledBackgroundSection = styled.div`
     }
     &:before,
     &:after {
-      background-position: 0vw 30vh !important;
+      background-position: 0vw 0vh !important;
       @media (min-width: 768px) {
-        background-position: 45vw 0vh !important;
+        background-position: 0vw 0vh !important;
       }
     }
   }
