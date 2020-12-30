@@ -1,10 +1,10 @@
 import PropTypes from "prop-types"
 import React from "react"
-import HeaderImage from "../components/headerImage"
+import StyledArtDirectedBackground from "../components/headerImage"
 
 const Header = ({ siteTitle }) => (
   <header className="header">
-    <HeaderImage className="header-background" />
+    <StyledArtDirectedBackground className="header-background" />
   </header>
 )
 

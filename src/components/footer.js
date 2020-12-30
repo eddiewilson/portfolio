@@ -59,7 +59,7 @@ const Footer = props => {
 
   const renderList = navLinks.map(({ title, link, i }) => {
     return (
-      <ListItem key={i}>
+      <ListItem key={title}>
         <a href={link}>
           <ListItemText
             primary={title}

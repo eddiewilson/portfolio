@@ -10,11 +10,11 @@ const Heading = withTheme(styled.div.attrs({
 })`
   position: absolute;
   left: 11vw;
-  bottom: ${rhythm(4)};
+  top: ${rhythm(3)};
   z-index: 1;
   ${props => props.theme.breakpoints.up("sm")} {
     max-width: 75vw;
-    bottom: ${rhythm(4)};
+    top: ${rhythm(3)};
   }
 `)
 
@@ -49,14 +49,8 @@ const Overlay = styled.div`
   right: 0;
 `
 
-const HeroImage = styled(BackgroundImage)`
-  background-position: 45vw 10vh !important;
-  ${props => props.theme.breakpoints.up("sm")} {
-    border: ${rhythm(1)} solid white;
-  }
-`
-
-const BackgroundSection = ({ className, props }) => {
+const HeroImage = styled(BackgroundImage)``
+const ArtDirectedBackground = ({ className }) => {
   const [topAnimation, setTopAnimation] = useState(false)
   const [bottomAnimation, setBottomAnimation] = useState(false)
 
@@ -89,58 +83,62 @@ const BackgroundSection = ({ className, props }) => {
         // Set ImageData.
         const imageData = data.desktop.childImageSharp.fluid
         return (
-          <StyledBackgroundSection>
-            <HeroImage
-              Tag="section"
-              className={className}
-              fluid={imageData}
-              backgroundColor={`#ededed`}
-            >
-              <Overlay />
+          <BackgroundImage
+            Tag={`section`}
+            id={`media-test`}
+            className={className}
+            fluid={imageData}
+            backgroundColor={`#ededed`}
+          >
+            <Overlay />
 
-              <Heading>
-                <Fade in={topAnimation}>
-                  <TopHeading variant="h1" component="h2">
-                    I’m Ed —
-                  </TopHeading>
-                </Fade>
-                <br />
-                <Fade in={bottomAnimation}>
-                  <BottomHeading variant="h1" component="h2">
-                    a developer / designer based in Cornwall
-                  </BottomHeading>
-                </Fade>
-              </Heading>
-            </HeroImage>
-          </StyledBackgroundSection>
+            <Heading>
+              <Fade in={topAnimation}>
+                <TopHeading variant="h1" component="h2">
+                  I’m Ed —
+                </TopHeading>
+              </Fade>
+              <br />
+              <Fade in={bottomAnimation}>
+                <BottomHeading variant="h1" component="h2">
+                  a developer / designer based in Cornwall
+                </BottomHeading>
+              </Fade>
+            </Heading>
+          </BackgroundImage>
         )
       }}
     />
   )
 }
 
-const StyledBackgroundSection = styled.div`
-  .header-background {
-    background-size: cover;
-    width: 100%;
-    height: 100%;
-    background-repeat: no-repeat;
-    min-width: 100vw;
-    min-height: 100vh;
-    -webkit-transition: all 1s cubic-bezier(0.6, 0.04, 0.98, 0.335) 0.5s;
-    transition: all 1s cubic-bezier(0.6, 0.04, 0.98, 0.335) 0.5s;
-    background-position: 0vw 30vh !important;
-    @media (min-width: 768px) {
-      background-position: 45vw 20vh !important;
-    }
-    &:before,
-    &:after {
-      background-position: 0vw 0vh !important;
-      @media (min-width: 768px) {
-        background-position: 0vw 0vh !important;
-      }
+const StyledArtDirectedBackground = withTheme(styled(ArtDirectedBackground)`
+  width: 100%;
+  min-height: 100vh;
+  /* You should set a background-size as the default value is "cover"! */
+  background-size: cover;
+  /* So we won't have the default "lightgray" background-color. */
+  background-color: #ededed;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  min-width: 100vw;
+  min-height: 100vh;
+  transition: all 1s cubic-bezier(0.6, 0.04, 0.98, 0.335) 0.5s;
+  background-position: 0vw 0vh !important;
+  &:before,
+  &:after {
+    background-position: 0vw 0vh !important;
+    ${props => props.theme.breakpoints.up("sm")} {
+      background-position: 0vw 20vh !important;
     }
   }
-`
 
-export default BackgroundSection
+  ${props => props.theme.breakpoints.up("sm")} {
+    border: ${rhythm(1)} solid white;
+    background-position: 45vw 20vh !important;
+    min-height: 160vh;
+  }
+`)
+
+export default StyledArtDirectedBackground
