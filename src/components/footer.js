@@ -1,11 +1,21 @@
 import React from "react"
 import styled from "styled-components"
-import { Typography, List, ListItem, ListItemText } from "@material-ui/core"
+import {
+  Typography,
+  List,
+  ListItem,
+  ListItemText,
+  withTheme,
+  Button,
+} from "@material-ui/core"
 
-const Nav = styled.nav.attrs({ className: "social-nav" })`
+const Nav = withTheme(styled.nav.attrs({ className: "social-nav" })`
+  order: 2;
   ul {
     padding: 0;
     margin: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
     li {
       list-style: none;
       padding-left: 0;
@@ -18,16 +28,56 @@ const Nav = styled.nav.attrs({ className: "social-nav" })`
         }
       }
     }
+    ${props => props.theme.breakpoints.up("sm")} {
+      display: block;
+    }
   }
-`
+  ${props => props.theme.breakpoints.up("sm")} {
+    order: 1;
+  }
+`)
+
 const ContactDetails = styled(List)`
   padding: 0;
   margin: 0;
   li {
     list-style: none;
     padding-left: 0;
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
   }
 `
+
+const ButtonLink = withTheme(styled(Button)`
+  text-transform: unset;
+  color: white;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  margin-left: -1rem;
+  span {
+    color: white;
+  }
+`)
+
+const Wrapper = withTheme(styled.footer`
+  // background-color: #2c3642;
+  padding: 11vw;
+  color: inherit;
+  display: grid;
+  grid-template-columns: 1fr;
+  ${props => props.theme.breakpoints.up("sm")} {
+    grid-template-columns: 1fr 1fr;
+  }
+`)
+
+const Details = withTheme(styled.div`
+  order: 1;
+  ${props => props.theme.breakpoints.up("sm")} {
+    order: 2;
+  }
+`)
 
 const Footer = props => {
   const navLinks = [
@@ -60,50 +110,46 @@ const Footer = props => {
   const renderList = navLinks.map(({ title, link, i }) => {
     return (
       <ListItem key={title}>
-        <a href={link}>
+        <ButtonLink size="small" href={link} variant="text">
           <ListItemText
             primary={title}
             secondary={"" ? "Secondary text" : null}
           />
-        </a>
+        </ButtonLink>
       </ListItem>
     )
   })
 
   return (
-    <footer className="footer">
-      <div className="footer-content">
-        <div className="social">
-          <Nav className="social-nav">
-            <List dense={true}>{renderList}</List>
-          </Nav>
-        </div>
-        <div className="footer-info">
-          <Typography>
-            If you’d like to have a chat about a project, job opportunity or
-            just some friendly advice. Please get in touch, let's have a coffee
-            and talk.
-          </Typography>
-          <ContactDetails dense={false}>
-            <ListItem>
-              <ListItemText
-                primary="+44 (0) 7974 419 892"
-                secondary={"" ? "Secondary text" : null}
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary="hello@edwardwilson.co"
-                secondary={"" ? "Secondary text" : null}
-              />
-            </ListItem>
-          </ContactDetails>
-        </div>
-      </div>
+    <Wrapper>
+      <Nav>
+        <List dense={true}>{renderList}</List>
+      </Nav>
+      <Details>
+        <Typography>
+          If you’d like to have a chat about a project, job opportunity or just
+          some friendly advice. Please get in touch, let's have a coffee and
+          talk.
+        </Typography>
+        <ContactDetails dense={false}>
+          <ListItem>
+            <ListItemText
+              primary="+44 (0) 7974 419 892"
+              secondary={"" ? "Secondary text" : null}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="hello@edwardwilson.co"
+              secondary={"" ? "Secondary text" : null}
+            />
+          </ListItem>
+        </ContactDetails>
+      </Details>
       {/* © {new Date().getFullYear()}, Built with
       {` `}
       <a href="https://www.gatsbyjs.org">Gatsby</a> */}
-    </footer>
+    </Wrapper>
   )
 }
 

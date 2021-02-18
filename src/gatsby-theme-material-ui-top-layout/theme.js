@@ -18,8 +18,11 @@ const theme = createMuiTheme({
     h1: {
       fontFamily: "Archivo Black",
       fontSize: "2rem",
+      lineHeight: "3rem",
+      color: "#086788",
       [defaultTheme.breakpoints.up("sm")]: {
         fontSize: "3rem",
+        lineHeight: "6rem",
       },
       [defaultTheme.breakpoints.up("md")]: {
         fontSize: "5rem",
@@ -27,6 +30,7 @@ const theme = createMuiTheme({
     },
     body1: {
       fontFamily: "Archivo",
+      color: "white",
     },
     body2: {
       fontFamily: "Archivo",

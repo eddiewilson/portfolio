@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from "react"
 import { graphql, StaticQuery } from "gatsby"
-import { Typography, withTheme, Fade } from "@material-ui/core/"
+import { Typography, withTheme, Fade, Icon } from "@material-ui/core/"
+import { ScrollRotate } from "react-scroll-rotate"
 import styled from "styled-components"
 import { rhythm } from "../utils/typography"
 import BackgroundImage from "gatsby-background-image"
+import BuddyIcon from "../components/buddyIcon"
 
 const Heading = withTheme(styled.div.attrs({
   className: "doAnimation",
 })`
-  position: absolute;
+  position: relative;
   left: 11vw;
   top: ${rhythm(3)};
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 60vh;
   ${props => props.theme.breakpoints.up("sm")} {
     max-width: 75vw;
+    min-height: 80vh;
     top: ${rhythm(3)};
   }
 `)
@@ -21,7 +27,6 @@ const Heading = withTheme(styled.div.attrs({
 const TopHeading = withTheme(styled(Typography).attrs({
   className: "topHeading",
 })`
-  color: white;
   z-index: 1;
   ${props => props.theme.breakpoints.up("sm")} {
     max-width: 75vw;
@@ -32,7 +37,6 @@ const TopHeading = withTheme(styled(Typography).attrs({
 const BottomHeading = withTheme(styled(Typography).attrs({
   className: "bottomHeading",
 })`
-  color: white;
   z-index: 1;
   ${props => props.theme.breakpoints.up("sm")} {
     max-width: 75vw;
@@ -48,6 +52,15 @@ const Overlay = styled.div`
   left: 0;
   right: 0;
 `
+
+const Logo = withTheme(styled.div`
+  position: fixed;
+  align-self: flex-end;
+  display: none;
+  ${props => props.theme.breakpoints.up("sm")} {
+    display: block;
+  }
+`)
 
 const HeroImage = styled(BackgroundImage)``
 const ArtDirectedBackground = ({ className }) => {
@@ -83,29 +96,34 @@ const ArtDirectedBackground = ({ className }) => {
         // Set ImageData.
         const imageData = data.desktop.childImageSharp.fluid
         return (
-          <BackgroundImage
-            Tag={`section`}
-            id={`media-test`}
-            className={className}
-            fluid={imageData}
-            backgroundColor={`#ededed`}
-          >
-            <Overlay />
+          // <BackgroundImage
+          //   Tag={`section`}
+          //   id={`media-test`}
+          //   className={className}
+          //   fluid={imageData}
+          //   backgroundColor={`#ededed`}
+          // >
+          //   <Overlay />
 
-            <Heading>
-              <Fade in={topAnimation}>
-                <TopHeading variant="h1" component="h2">
-                  I’m Ed —
-                </TopHeading>
-              </Fade>
-              <br />
-              <Fade in={bottomAnimation}>
-                <BottomHeading variant="h1" component="h2">
-                  a developer / designer based in Cornwall
-                </BottomHeading>
-              </Fade>
-            </Heading>
-          </BackgroundImage>
+          <Heading>
+            <Logo>
+              <ScrollRotate>
+                <BuddyIcon />
+              </ScrollRotate>
+            </Logo>
+            <Fade in={topAnimation}>
+              <TopHeading variant="h1" component="h2">
+                I’m Ed —
+              </TopHeading>
+            </Fade>
+            <br />
+            <Fade in={bottomAnimation}>
+              <BottomHeading variant="h1" component="h2">
+                a developer / designer based in Cornwall
+              </BottomHeading>
+            </Fade>
+          </Heading>
+          // </BackgroundImage>
         )
       }}
     />
@@ -124,11 +142,11 @@ const StyledArtDirectedBackground = withTheme(styled(ArtDirectedBackground)`
   background-repeat: no-repeat;
   min-width: 100vw;
   min-height: 100vh;
-  transition: all 1s cubic-bezier(0.6, 0.04, 0.98, 0.335) 0.5s;
-  background-position: 0vw 0vh !important;
+  transition: unset;
+  background-position: 0vw 30vh !important;
   &:before,
   &:after {
-    background-position: 0vw 0vh !important;
+    background-position: 0vw 30vh !important;
     ${props => props.theme.breakpoints.up("sm")} {
       background-position: 0vw 20vh !important;
     }
@@ -138,6 +156,7 @@ const StyledArtDirectedBackground = withTheme(styled(ArtDirectedBackground)`
     border: ${rhythm(1)} solid white;
     background-position: 45vw 20vh !important;
     min-height: 160vh;
+    box-sizing: border-box;
   }
 `)
 
