@@ -19,6 +19,14 @@ const Heading = withTheme(styled.div.attrs({
     min-height: 80vh;
     top: ${rhythm(3)};
   }
+  ${props => props.theme.breakpoints.up("md")} {
+    padding: 30vw 11vw 5.5vw 11vw;
+    min-height: 80vh;
+    top: ${rhythm(3)};
+  }
+  ${props => props.theme.breakpoints.up("lg")} {
+    padding: 11vw 11vw 5.5vw 11vw;
+  }
 `)
 
 const TopHeading = withTheme(styled(Typography).attrs({

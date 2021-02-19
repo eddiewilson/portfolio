@@ -20,11 +20,6 @@ const theme = createMuiTheme({
       fontSize: "2.3rem",
       lineHeight: "3rem",
       color: "#ef233c",
-      background: "linear-gradient(270deg, #f8edeb, #d8e2dc)",
-      backgroundSize: "400% 400%",
-      animation: "AnimationName 30s ease infinite",
-      backgroundClip: "text",
-
       [defaultTheme.breakpoints.up("sm")]: {
         fontSize: "3rem",
         lineHeight: "6rem",
