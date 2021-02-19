@@ -17,7 +17,7 @@ const theme = createMuiTheme({
     fontFamily: ["Archivo Black", "Archivo", "sans-serif"].join(", "),
     h1: {
       fontFamily: "Archivo Black",
-      fontSize: "2rem",
+      fontSize: "2.3rem",
       lineHeight: "3rem",
       color: "#ef233c",
       background: "linear-gradient(270deg, #f8edeb, #d8e2dc)",

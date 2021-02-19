@@ -12,10 +12,10 @@ const Heading = withTheme(styled.div.attrs({
 })`
   display: flex;
   flex-direction: column;
-  padding: 11vw;
+  padding: 70vw 11vw 20vw 11vw;
   min-height: 60vh;
   ${props => props.theme.breakpoints.up("sm")} {
-    padding: 5.5vw 11vw;
+    padding: 11vw 11vw 5.5vw 11vw;
     min-height: 80vh;
     top: ${rhythm(3)};
   }
