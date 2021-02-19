@@ -10,15 +10,12 @@ import BuddyIcon from "../components/buddyIcon"
 const Heading = withTheme(styled.div.attrs({
   className: "doAnimation",
 })`
-  position: relative;
-  left: 11vw;
-  top: ${rhythm(3)};
-  z-index: 1;
   display: flex;
   flex-direction: column;
+  padding: 11vw;
   min-height: 60vh;
   ${props => props.theme.breakpoints.up("sm")} {
-    max-width: 75vw;
+    padding: 5.5vw 11vw;
     min-height: 80vh;
     top: ${rhythm(3)};
   }

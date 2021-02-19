@@ -21,7 +21,7 @@ const Nav = withTheme(styled.nav.attrs({ className: "social-nav" })`
       padding-left: 0;
       a {
         text-decoration: none;
-        color: inherit;
+        color: #ef233c;
         transition: all 0.1s ease-in 0s;
         &:hover {
           font-family: "Archivo Black", sans-serif;
@@ -57,7 +57,7 @@ const ButtonLink = withTheme(styled(Button)`
   padding-right: 1rem;
   margin-left: -1rem;
   span {
-    color: white;
+    color: #ef233c;
   }
 `)
 
@@ -68,7 +68,7 @@ const Wrapper = withTheme(styled.footer`
   display: grid;
   grid-template-columns: 1fr;
   ${props => props.theme.breakpoints.up("sm")} {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1.25fr;
   }
 `)
 
@@ -127,9 +127,8 @@ const Footer = props => {
       </Nav>
       <Details>
         <Typography>
-          If you’d like to have a chat about a project, job opportunity or just
-          some friendly advice. Please get in touch, let's have a coffee and
-          talk.
+          If you’d like to have a chat about a project or just some friendly
+          advice. Get in touch, let's have a coffee and talk.
         </Typography>
         <ContactDetails dense={false}>
           <ListItem>

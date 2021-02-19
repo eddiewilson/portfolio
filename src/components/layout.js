@@ -18,7 +18,7 @@ import "./layout.css"
 import Footer from "./footer"
 
 const Wrapper = styled.div`
-  background: linear-gradient(270deg, #ff6700, #dd1c1a);
+  background: linear-gradient(270deg, #f8edeb, #d8e2dc);
   background-size: 400% 400%;
 
   -webkit-animation: AnimationName 30s ease infinite;

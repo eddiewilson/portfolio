@@ -19,7 +19,12 @@ const theme = createMuiTheme({
       fontFamily: "Archivo Black",
       fontSize: "2rem",
       lineHeight: "3rem",
-      color: "#086788",
+      color: "#ef233c",
+      background: "linear-gradient(270deg, #f8edeb, #d8e2dc)",
+      backgroundSize: "400% 400%",
+      animation: "AnimationName 30s ease infinite",
+      backgroundClip: "text",
+
       [defaultTheme.breakpoints.up("sm")]: {
         fontSize: "3rem",
         lineHeight: "6rem",
@@ -30,7 +35,7 @@ const theme = createMuiTheme({
     },
     body1: {
       fontFamily: "Archivo",
-      color: "white",
+      color: "#ef233c",
     },
     body2: {
       fontFamily: "Archivo",
@@ -52,7 +57,9 @@ const theme = createMuiTheme({
   overrides: {
     MuiCssBaseline: {
       "@global": {
-        html: {},
+        html: {
+          backgroundColor: "#ef233c",
+        },
       },
     },
   },
