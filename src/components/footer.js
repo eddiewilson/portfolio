@@ -21,7 +21,7 @@ const Nav = withTheme(styled.nav.attrs({ className: "social-nav" })`
       padding-left: 0;
       a {
         text-decoration: none;
-        color: #ef233c;
+        color: white;
         transition: all 0.1s ease-in 0s;
         &:hover {
           font-family: "Archivo Black", sans-serif;
@@ -57,7 +57,7 @@ const ButtonLink = withTheme(styled(Button)`
   padding-right: 1rem;
   margin-left: -1rem;
   span {
-    color: #ef233c;
+    color: white;
   }
 `)
 

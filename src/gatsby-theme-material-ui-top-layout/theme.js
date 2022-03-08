@@ -17,20 +17,25 @@ const theme = createMuiTheme({
     fontFamily: ["Archivo Black", "Archivo", "sans-serif"].join(", "),
     h1: {
       fontFamily: "Archivo Black",
-      fontSize: "2.3rem",
-      lineHeight: "3rem",
-      color: "#ef233c",
+      fontSize: "1.5rem",
+      lineHeight: "2.5rem",
+      color: "white",
       [defaultTheme.breakpoints.up("sm")]: {
         fontSize: "3rem",
-        lineHeight: "6rem",
+        lineHeight: "4rem",
       },
       [defaultTheme.breakpoints.up("md")]: {
+        fontSize: "4rem",
+        lineHeight: "5rem",
+      },
+      [defaultTheme.breakpoints.up("lg")]: {
         fontSize: "5rem",
+        lineHeight: "6rem",
       },
     },
     body1: {
       fontFamily: "Archivo",
-      color: "#ef233c",
+      color: "white",
     },
     body2: {
       fontFamily: "Archivo",
@@ -53,7 +58,7 @@ const theme = createMuiTheme({
     MuiCssBaseline: {
       "@global": {
         html: {
-          backgroundColor: "#ef233c",
+          backgroundColor: "#E4DCC9",
         },
       },
     },

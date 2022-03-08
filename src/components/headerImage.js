@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from "react"
-import { graphql, StaticQuery } from "gatsby"
-import { Typography, withTheme, Fade, Icon } from "@material-ui/core/"
-import { ScrollRotate } from "react-scroll-rotate"
+import React from "react"
+import { Typography, withTheme } from "@material-ui/core/"
 import styled from "styled-components"
 import { rhythm } from "../utils/typography"
-import BackgroundImage from "gatsby-background-image"
-import BuddyIcon from "../components/buddyIcon"
+
+import { motion } from "framer-motion"
 
 const Heading = withTheme(styled.div.attrs({
   className: "doAnimation",
 })`
   display: flex;
   flex-direction: column;
-  padding: 70vw 11vw 20vw 11vw;
-  min-height: 60vh;
-  ${props => props.theme.breakpoints.up("sm")} {
-    padding: 11vw 11vw 5.5vw 11vw;
-    min-height: 80vh;
+  padding: 6vh 11vw 3vh 11vw;
+  top: ${rhythm(3)};
+  ${props => props.theme.breakpoints.down("md")} {
+    padding: 8vh 11vw 8vh 11vw;
     top: ${rhythm(3)};
   }
-  ${props => props.theme.breakpoints.up("md")} {
-    padding: 30vw 11vw 5.5vw 11vw;
-    min-height: 80vh;
+  ${props => props.theme.breakpoints.down("lg")} {
+    padding: 8rem 11vw 8vh 11vw;
     top: ${rhythm(3)};
-  }
-  ${props => props.theme.breakpoints.up("lg")} {
-    padding: 11vw 11vw 5.5vw 11vw;
   }
 `)
 
@@ -33,105 +26,88 @@ const TopHeading = withTheme(styled(Typography).attrs({
   className: "topHeading",
 })`
   z-index: 1;
+  .text-wrapper {
+    height: 100%;
+    overflow: hidden;
+    ${props => props.theme.breakpoints.up("md")} {
+      height: 100%;
+    }
+    ${props => props.theme.breakpoints.up("lg")} {
+      height: 100%;
+    }
+    ${props => props.theme.breakpoints.up("xl")} {
+      height: 100%;
+    }
+  }
   ${props => props.theme.breakpoints.up("sm")} {
     max-width: 75vw;
     bottom: ${rhythm(4)};
   }
-`)
-
-const BottomHeading = withTheme(styled(Typography).attrs({
-  className: "bottomHeading",
-})`
-  z-index: 1;
-  ${props => props.theme.breakpoints.up("sm")} {
-    max-width: 75vw;
-    bottom: ${rhythm(4)};
+  color: white;
+  -webkit-animation: AnimationName 30s ease infinite;
+  -moz-animation: AnimationName 30s ease infinite;
+  animation: AnimationName 30s ease infinite;
+  @keyframes AnimationName {
+    0% {
+      color: #253031;
+    }
+    50% {
+      color: white;
+    }
+    100% {
+      color: b#253031;
+    }
   }
 `)
 
-const Overlay = styled.div`
-  position: absolute;
-  background-color: rgba(44, 54, 66, 0.7);
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-`
-
-const Logo = withTheme(styled.div`
-  position: fixed;
-  align-self: flex-end;
-  display: none;
-  ${props => props.theme.breakpoints.up("sm")} {
-    display: block;
-  }
-`)
-
-const HeroImage = styled(BackgroundImage)``
-const ArtDirectedBackground = ({ className }) => {
-  const [topAnimation, setTopAnimation] = useState(false)
-  const [bottomAnimation, setBottomAnimation] = useState(false)
-
-  const doAnimation = () => {
-    setTopAnimation(true)
-    setTimeout(function () {
-      setBottomAnimation(true)
-    }, 1300)
+const ArtDirectedBackground = () => {
+  const list = {
+    visible: {
+      opacity: 1,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.2,
+      },
+    },
+    hidden: {
+      opacity: 0,
+      transition: {
+        when: "afterChildren",
+      },
+    },
   }
 
-  useEffect(doAnimation, [])
+  const item = {
+    visible: { opacity: 1 },
+    hidden: { opacity: 0 },
+  }
+  const textLine = {
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.9,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+    hidden: { opacity: 0, y: 200 },
+  }
+
+  const title = ["I’m Ed —", "a developer /", "designer based in", "Cornwall"]
   return (
-    <StaticQuery
-      query={graphql`
-        query {
-          desktop: file(
-            relativePath: {
-              eq: "Clays_Adult_Hand_iPhone_6s_Presentation_1.jpg"
-            }
-          ) {
-            childImageSharp {
-              fluid(quality: 90, maxWidth: 1920) {
-                ...GatsbyImageSharpFluid_withWebp
-              }
-            }
-          }
-        }
-      `}
-      render={data => {
-        // Set ImageData.
-        const imageData = data.desktop.childImageSharp.fluid
-        return (
-          // <BackgroundImage
-          //   Tag={`section`}
-          //   id={`media-test`}
-          //   className={className}
-          //   fluid={imageData}
-          //   backgroundColor={`#ededed`}
-          // >
-          //   <Overlay />
-
-          <Heading>
-            <Logo>
-              <ScrollRotate>
-                <BuddyIcon />
-              </ScrollRotate>
-            </Logo>
-            <Fade in={topAnimation}>
-              <TopHeading variant="h1" component="h2">
-                I’m Ed —
-              </TopHeading>
-            </Fade>
-            <br />
-            <Fade in={bottomAnimation}>
-              <BottomHeading variant="h1" component="h2">
-                a developer / designer based in Cornwall
-              </BottomHeading>
-            </Fade>
-          </Heading>
-          // </BackgroundImage>
-        )
-      }}
-    />
+    <Heading>
+      <TopHeading variant="h1" component="h2">
+        <motion.div initial="hidden" animate="visible" variants={list}>
+          {title.map(line => {
+            return (
+              <motion.div className="text-wrapper" key={line} variants={item}>
+                <motion.div variants={textLine}>{line}</motion.div>
+              </motion.div>
+            )
+          })}
+        </motion.div>
+      </TopHeading>
+    </Heading>
   )
 }
 
@@ -141,7 +117,18 @@ const StyledArtDirectedBackground = withTheme(styled(ArtDirectedBackground)`
   /* You should set a background-size as the default value is "cover"! */
   background-size: cover;
   /* So we won't have the default "lightgray" background-color. */
-  background-color: #ededed;
+  background: #334d50; /* fallback for old browsers */
+  background: -webkit-linear-gradient(
+    to right,
+    #cbcaa5,
+    #334d50
+  ); /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(
+    to right,
+    #cbcaa5,
+    #334d50
+  ); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
   width: 100%;
   height: 100%;
   background-repeat: no-repeat;
