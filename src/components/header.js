@@ -1,9 +1,8 @@
 import PropTypes from "prop-types"
 import React from "react"
 import StyledArtDirectedBackground from "../components/headerImage"
-import styled from "styled-components"
 
-const Header = ({ siteTitle }) => (
+const Header = () => (
   <header className="header">
     <StyledArtDirectedBackground className="header-background" />
   </header>
