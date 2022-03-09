@@ -1,9 +1,9 @@
 {
-  "name": "gatsby-starter-default",
+  "name": "edward-wilson",
   "private": true,
-  "description": "A simple starter to get up and developing quickly with Gatsby",
+  "description": "Software Engineer & Designer",
   "version": "0.1.0",
-  "author": "Kyle Mathews <mathews.kyle@gmail.com>",
+  "author": "Edward Wilson <hello@edwardwilson.co>",
   "dependencies": {
     "@material-ui/core": "^4.11.2",
     "@material-ui/styles": "^4.11.2",
@@ -33,7 +33,7 @@
   "keywords": [
     "gatsby"
   ],
-  "license": "MIT",
+  "license": "0BSD",
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
