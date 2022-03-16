@@ -1,47 +1,47 @@
 import React from "react"
-import { Typography, withTheme } from "@material-ui/core/"
 import styled from "styled-components"
-import { rhythm } from "../utils/typography"
+import { device } from "../utils/mediaQueries"
 
 import { motion } from "framer-motion"
 
-const Heading = withTheme(styled.div.attrs({
+const Heading = styled.div.attrs({
   className: "doAnimation",
 })`
   display: flex;
   flex-direction: column;
   padding: 6vh 11vw 3vh 11vw;
-  top: ${rhythm(3)};
-  ${props => props.theme.breakpoints.down("md")} {
+  top: 3rem;
+  @media ${device.mobileL} {
     padding: 8vh 11vw 8vh 11vw;
-    top: ${rhythm(3)};
+    top: 3rem;
   }
-  ${props => props.theme.breakpoints.down("lg")} {
+  @media ${device.laptop} {
     padding: 8rem 11vw 8vh 11vw;
-    top: ${rhythm(3)};
+    top: 3rem;
   }
-`)
+`
 
-const TopHeading = withTheme(styled(Typography).attrs({
+const TopHeading = styled.h2.attrs({
   className: "topHeading",
 })`
   z-index: 1;
   .text-wrapper {
     height: 100%;
     overflow: hidden;
-    ${props => props.theme.breakpoints.up("md")} {
+    padding-bottom: 0.2rem;
+    @media ${device.mobileL} {
       height: 100%;
     }
-    ${props => props.theme.breakpoints.up("lg")} {
+    @media ${device.laptop} {
       height: 100%;
     }
-    ${props => props.theme.breakpoints.up("xl")} {
+    @media ${device.desktop} {
       height: 100%;
     }
   }
-  ${props => props.theme.breakpoints.up("sm")} {
+  @media ${device.mobileM} {
     max-width: 75vw;
-    bottom: ${rhythm(4)};
+    bottom: 4rem;
   }
   color: white;
   -webkit-animation: AnimationName 30s ease infinite;
@@ -58,7 +58,7 @@ const TopHeading = withTheme(styled(Typography).attrs({
       color: b#253031;
     }
   }
-`)
+`
 
 const ArtDirectedBackground = () => {
   const list = {
@@ -96,7 +96,7 @@ const ArtDirectedBackground = () => {
   const title = ["I’m Ed —", "a developer /", "designer based in", "Cornwall"]
   return (
     <Heading>
-      <TopHeading variant="h1" component="h2">
+      <TopHeading>
         <motion.div initial="hidden" animate="visible" variants={list}>
           {title.map(line => {
             return (
@@ -111,7 +111,7 @@ const ArtDirectedBackground = () => {
   )
 }
 
-const StyledArtDirectedBackground = withTheme(styled(ArtDirectedBackground)`
+const StyledArtDirectedBackground = styled(ArtDirectedBackground)`
   width: 100%;
   min-height: 100vh;
   /* You should set a background-size as the default value is "cover"! */
@@ -139,17 +139,16 @@ const StyledArtDirectedBackground = withTheme(styled(ArtDirectedBackground)`
   &:before,
   &:after {
     background-position: 0vw 30vh !important;
-    ${props => props.theme.breakpoints.up("sm")} {
+    @media ${device.mobileM} {
       background-position: 0vw 20vh !important;
     }
   }
 
-  ${props => props.theme.breakpoints.up("sm")} {
-    border: ${rhythm(1)} solid white;
+  @media ${device.mobileM} {
     background-position: 45vw 20vh !important;
     min-height: 160vh;
     box-sizing: border-box;
   }
-`)
+`
 
 export default StyledArtDirectedBackground

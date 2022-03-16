@@ -65,25 +65,16 @@ module.exports = {
         // cookieDomain: "example.com",
       },
     },
-    {
-      resolve: `gatsby-theme-material-ui`,
-      options: {
-        webFontsConfig: {
-          fonts: {
-            google: [
-              {
-                family: `Archivo Black`,
-                variants: [`400`, `400i`, `700`, `900`],
-              },
-              {
-                family: `Archivo`,
-                variants: [`100`, `300`, `400`, `700`, `700i`, `900`],
-              },
-            ],
-          },
-        },
-      },
-    },
+    // google: [
+    //   {
+    //     family: `Archivo Black`,
+    //     variants: [`400`, `400i`, `700`, `900`],
+    //   },
+    //   {
+    //     family: `Archivo`,
+    //     variants: [`100`, `300`, `400`, `700`, `700i`, `900`],
+    //   },
+    // ],
     {
       resolve: `gatsby-plugin-styled-components`,
       options: {

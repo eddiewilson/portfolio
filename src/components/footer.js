@@ -1,85 +1,112 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import styled from "styled-components"
-import {
-  Typography,
-  List,
-  ListItem,
-  ListItemText,
-  withTheme,
-  Button,
-} from "@material-ui/core"
+import { device } from "../utils/mediaQueries"
+import { motion } from "framer-motion"
 
-const Nav = withTheme(styled.nav.attrs({ className: "social-nav" })`
+const Nav = styled.ul.attrs({ className: "social-nav" })`
   order: 2;
-  ul {
-    padding: 0;
-    margin: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    li {
-      list-style: none;
-      padding-left: 0;
-      a {
-        text-decoration: none;
-        color: white;
-        transition: all 0.1s ease-in 0s;
-        &:hover {
-          font-family: "Archivo Black", sans-serif;
-        }
-      }
-    }
-    ${props => props.theme.breakpoints.up("sm")} {
-      display: block;
-    }
-  }
-  ${props => props.theme.breakpoints.up("sm")} {
-    order: 1;
-  }
-`)
-
-const ContactDetails = styled(List)`
   padding: 0;
   margin: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  list-style: none;
   li {
     list-style: none;
     padding-left: 0;
     a {
+      transition: all 0.2s ease-in 0s;
+      position: relative;
+      display: inline-block;
       text-decoration: none;
-      color: inherit;
+      color: white;
+      text-decoration: none;
+      background-size: 0 100%;
+      transition: background-size 0.3s ease;
+      background-image: linear-gradient(
+        transparent calc(100% - 1px),
+        hsla(0, 100%, 71%, 0.5) 1px
+      );
+      background-repeat: no-repeat;
+      cursor: pointer;
+      &:hover {
+        background-size: 100% 100%;
+        color: hsla(0, 100%, 71%, 1);
+      }
     }
+
+    @media ${device.mobileL} {
+      display: block;
+    }
+  }
+  @media ${device.mobileL} {
+    order: 1;
   }
 `
 
-const ButtonLink = withTheme(styled(Button)`
-  text-transform: unset;
-  color: white;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  margin-left: -1rem;
+const ContactDetails = styled.ul`
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  li {
+    width: max-content;
+    list-style: none;
+    padding-left: 0;
+    transition: all 0.2s ease-in 0s;
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+    color: white;
+    text-decoration: none;
+    background-size: 0 100%;
+    transition: background-size 0.3s ease;
+    background-image: linear-gradient(
+      transparent calc(100% - 1px),
+      hsla(0, 100%, 71%, 0.5) 1px
+    );
+    background-repeat: no-repeat;
+    cursor: pointer;
+    &:hover {
+      background-size: 100% 100%;
+      color: hsla(0, 100%, 71%, 1);
+      span {
+        color: white;
+        background-size: 0 100%;
+      }
+    }
+  }
   span {
     color: white;
+    width: max-content;
+    display: block;
   }
-`)
+`
 
-const Wrapper = withTheme(styled.footer`
-  // background-color: #2c3642;
+const Wrapper = styled.footer`
   padding: 11vw;
   color: inherit;
   display: grid;
   grid-template-columns: 1fr;
-  ${props => props.theme.breakpoints.up("sm")} {
+  @media ${device.mobileL} {
     grid-template-columns: 1fr 1.25fr;
   }
-`)
+`
 
-const Details = withTheme(styled.div`
+const Details = styled.div`
   order: 1;
-  ${props => props.theme.breakpoints.up("sm")} {
+  @media ${device.mobileL} {
     order: 2;
   }
-`)
+`
 
 const Footer = props => {
+  const [copy, setCopy] = useState(null)
+  useEffect(() => {
+    setInterval(() => {
+      setCopy(null)
+    }, 3000)
+  }, [setCopy])
   const navLinks = [
     {
       title: "Codepen",
@@ -109,40 +136,34 @@ const Footer = props => {
 
   const renderList = navLinks.map(({ title, link, i }) => {
     return (
-      <ListItem key={title}>
-        <ButtonLink size="small" href={link} variant="text">
-          <ListItemText
-            primary={title}
-            secondary={"" ? "Secondary text" : null}
-          />
-        </ButtonLink>
-      </ListItem>
+      <li key={title}>
+        <a href={link}>{title}</a>
+      </li>
     )
   })
 
+  const copyText = textToCopy => {
+    setCopy(textToCopy)
+    typeof window !== "undefined" && navigator.clipboard.writeText(copy)
+  }
+
   return (
     <Wrapper>
-      <Nav>
-        <List dense={true}>{renderList}</List>
-      </Nav>
+      <Nav>{renderList}</Nav>
       <Details>
-        <Typography>
+        <p>
           If you’d like to have a chat about a project or just some friendly
           advice. Get in touch, let's have a coffee and talk.
-        </Typography>
-        <ContactDetails dense={false}>
-          <ListItem>
-            <ListItemText
-              primary="+44 (0) 7974 419 892"
-              secondary={"" ? "Secondary text" : null}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="hello@edwardwilson.co"
-              secondary={"" ? "Secondary text" : null}
-            />
-          </ListItem>
+        </p>
+        <ContactDetails>
+          <li>+44 (0) 7974 419 892</li>
+          <li onClick={() => copyText("hello@edwardwilson.co")}>
+            {copy ? (
+              <span>Copied to clipboard! 👌🏼</span>
+            ) : (
+              "hello@edwardwilson.co"
+            )}
+          </li>
         </ContactDetails>
       </Details>
       {/* © {new Date().getFullYear()}, Built with
