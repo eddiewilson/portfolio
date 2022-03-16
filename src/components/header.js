@@ -1,11 +1,17 @@
 import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
 import StyledArtDirectedBackground from "../components/headerImage"
 
+const HeaderWrapper = styled.header`
+  width: 100vw;
+  overflow-x: hidden;
+`
+
 const Header = () => (
-  <header className="header">
+  <HeaderWrapper className="header">
     <StyledArtDirectedBackground className="header-background" />
-  </header>
+  </HeaderWrapper>
 )
 
 Header.propTypes = {
