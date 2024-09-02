@@ -65,6 +65,9 @@ const ContactDetails = styled.ul`
       transparent calc(100% - 1px),
       hsla(0, 100%, 71%, 0.5) 1px
     );
+    a{
+    color: inherit;
+    }
     background-repeat: no-repeat;
     cursor: pointer;
     &:hover {
@@ -156,7 +159,7 @@ const Footer = props => {
           advice. Get in touch, let's have a coffee and talk.
         </p>
         <ContactDetails>
-          <li style={{color: "inherit"}}>+44 (0) 7974 419 892</li>
+          <li style={{color: "#ffffff"}}>+44 (0) 7974 419 892</li>
           <li onClick={() => copyText("hello@edwardwilson.co")}>
             {copy ? (
               <span>Copied to clipboard! 👌🏼</span>
