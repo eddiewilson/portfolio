@@ -156,7 +156,7 @@ const Footer = props => {
           advice. Get in touch, let's have a coffee and talk.
         </p>
         <ContactDetails>
-          <li>+44 (0) 7974 419 892</li>
+          <li style={{color: "inherit"}}>+44 (0) 7974 419 892</li>
           <li onClick={() => copyText("hello@edwardwilson.co")}>
             {copy ? (
               <span>Copied to clipboard! 👌🏼</span>
